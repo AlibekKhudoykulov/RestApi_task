@@ -1,8 +1,10 @@
 package com.epam.esm.Configuration;
 
+import com.epam.esm.Entity.Tag;
 import com.epam.esm.Payload.ApiResponse;
 import com.epam.esm.Payload.GiftCertificateDTO;
 import com.epam.esm.Service.GiftCertificateService;
+import com.epam.esm.Service.TagService;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -23,9 +25,10 @@ public class Main {
         GiftCertificateDTO giftCertificateDTO=new GiftCertificateDTO("Elbek","gift",100000,
                 30);
 
-        GiftCertificateService giftCertificateService=new GiftCertificateService();
-        ApiResponse allGiftCertificates = giftCertificateService.deleteGiftCertificate(26);
-        System.out.println(allGiftCertificates);
+        Tag tag1=new Tag("qalesan");
+        TagService tagService=new TagService();
+        ApiResponse allTags = tagService.addTag(tag1);
+        System.out.println(allTags);
 
 
     }

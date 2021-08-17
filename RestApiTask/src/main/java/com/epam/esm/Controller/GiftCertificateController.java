@@ -17,7 +17,7 @@ public class GiftCertificateController {
     @Autowired
     GiftCertificateService giftCertificateService;
 
-    @RequestMapping(value = "/all",method = RequestMethod.GET)
+    @GetMapping("/all")
     public HttpEntity<?> getAll() throws SQLException, ClassNotFoundException {
         ApiResponse allGiftCertificates = giftCertificateService.getAllGiftCertificates();
         return ResponseEntity.status(allGiftCertificates.isSuccess() ? 200 : 404).body(allGiftCertificates);

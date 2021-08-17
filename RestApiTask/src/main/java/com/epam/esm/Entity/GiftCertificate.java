@@ -17,11 +17,11 @@ public class GiftCertificate {
     private String description;
     private Integer price;
     private Integer duration;
-    private Date create_date;
-    private Date last_update_date;
+    private String create_date;
+    private String last_update_date;
     List<Tag> tags = new ArrayList<>();
 
-    public GiftCertificate(Integer id, String name, String description, Integer price, Integer duration, Date create_date, Date last_update_date) {
+    public GiftCertificate(Integer id, String name, String description, Integer price, Integer duration, String create_date, String last_update_date) {
         this.id = id;
         this.name = name;
         this.description = description;

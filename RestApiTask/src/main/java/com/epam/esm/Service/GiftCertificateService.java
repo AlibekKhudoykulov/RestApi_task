@@ -6,6 +6,8 @@ import com.epam.esm.Entity.Tag;
 import com.epam.esm.Payload.ApiResponse;
 import com.epam.esm.Payload.GiftCertificateDTO;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +16,6 @@ import java.util.List;
 
 @Service
 public class GiftCertificateService {
-
 
     public ApiResponse getAllGiftCertificates() throws SQLException, ClassNotFoundException {
         String sql = "select * from gift_certificate";
@@ -35,9 +36,10 @@ public class GiftCertificateService {
                 certificates.add(new GiftCertificate(resultSet.getInt(1),
                         resultSet.getString("name"), resultSet.getString("description"),
                         resultSet.getInt("duration"), resultSet.getInt("price"),
-                        resultSet.getDate("create_date"), resultSet.getDate("last_update_date"), tags));
+                        resultSet.getString("create_date"), resultSet.getString("last_update_date"), tags));
             } while (resultSet.next());
         }
+
         return new ApiResponse("Success", true, certificates);
     }
 
@@ -56,6 +58,7 @@ public class GiftCertificateService {
         }
 
         List<Tag> tags = new ArrayList<>();
+
         while (resultSet1.next()) {
             Tag tag = new Tag(resultSet1.getInt(1), resultSet1.getString(2));
             tags.add(tag);
@@ -64,7 +67,7 @@ public class GiftCertificateService {
         GiftCertificate giftCertificate = new GiftCertificate(resultSet.getInt(1),
                 resultSet.getString("name"), resultSet.getString("description"),
                 resultSet.getInt("duration"), resultSet.getInt("price"),
-                resultSet.getDate("create_date"), resultSet.getDate("last_update_date"), tags);
+                resultSet.getString("create_date"), resultSet.getString("last_update_date"), tags);
 
         return new ApiResponse("success", true, giftCertificate);
     }
@@ -85,6 +88,7 @@ public class GiftCertificateService {
                     getAddedCertificateId(giftCertificateDTO.getName()) + "," + tag + ")";
             statement.execute(sqlTag);
         }
+
         return new ApiResponse("Gift certificate added successfully", true);
     }
 
@@ -93,10 +97,12 @@ public class GiftCertificateService {
         Connection connection = DbConfig.getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
+
         if (resultSet.next()) {
             Integer anInt = resultSet.getInt(1);
             return anInt;
         }
+
         return null;
     }
 
@@ -104,9 +110,11 @@ public class GiftCertificateService {
         String sql="select * from gift_certificate where id="+id;
         Statement statement = DbConfig.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
+
         if (!resultSet.next()){
             return new ApiResponse("Gift certificate not found",false);
         }
+
         Timestamp timestamp=new Timestamp(System.currentTimeMillis());
         String last_update = timestamp.toString();
 
@@ -115,6 +123,7 @@ public class GiftCertificateService {
                 + "' where gift_certificate.id=" + id;
 
         statement.execute(updateSql);
+
         return new ApiResponse("Gift certificates Updated successfully",true);
     }
 
@@ -122,6 +131,7 @@ public class GiftCertificateService {
         String sql="select * from gift_certificate where gift_certificate.id="+id;
         Statement statement = DbConfig.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
+
         if (!resultSet.next()){
             return new ApiResponse("Gift certificate not found",false);
         }
