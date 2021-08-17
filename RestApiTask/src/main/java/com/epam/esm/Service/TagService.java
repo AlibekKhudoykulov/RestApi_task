@@ -18,6 +18,12 @@ import java.util.List;
 @Service
 public class TagService {
 
+    /**
+     *  Get ALL Tags of Tag Entity
+     * @return ApiResponse with Message,Success(boolean) and Tags List
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ApiResponse getAllTags() throws SQLException, ClassNotFoundException {
         String sql="select * from tag";
         Connection connection = DbConfig.getConnection();
@@ -34,6 +40,13 @@ public class TagService {
         }
     }
 
+    /**
+     *  Get Tag By ID Method of Tag Entity
+     * @param id
+     * @return ApiResponce with Message,Success(boolean) and One Tag
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ApiResponse getTagById(Integer id) throws SQLException, ClassNotFoundException {
         String sql="select * from tag where id="+id;
         Connection connection = DbConfig.getConnection();
@@ -42,6 +55,14 @@ public class TagService {
         Tag tag=new Tag(resultSet.getInt("id"),resultSet.getString("name"));
         return new ApiResponse("Success",true,tag);
     }
+
+    /**
+     *  Delete Tag by ID of Tag Entity
+     * @param id
+     * @return ApiResponse with Message and Success(boolean)
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ApiResponse deleteTagById(Integer id) throws SQLException, ClassNotFoundException {
         String sql="select * from tag where id="+id;
         Connection connection = DbConfig.getConnection();
@@ -58,6 +79,13 @@ public class TagService {
 
     }
 
+    /**
+     *  ADD Tag method of Tag Entity
+     * @param tag
+     * @return ApiResponse with Message and Success(boolean)
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ApiResponse addTag(Tag tag) throws SQLException, ClassNotFoundException {
         String sql="insert into tag(name) values('"+tag.getName()+"')";
         Connection connection = DbConfig.getConnection();

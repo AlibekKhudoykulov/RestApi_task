@@ -17,6 +17,13 @@ import java.util.List;
 @Service
 public class GiftCertificateService {
 
+    /**
+     * GET ALL Method for Gift Certificate entity
+     * @return List of Gift Certificate
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
     public ApiResponse getAllGiftCertificates() throws SQLException, ClassNotFoundException {
         String sql = "select * from gift_certificate";
         Connection connection = DbConfig.getConnection();
@@ -43,6 +50,13 @@ public class GiftCertificateService {
         return new ApiResponse("Success", true, certificates);
     }
 
+    /**
+     * Get Gift By Id Method for Gift Certificate Entity
+     * @param id
+     * @return Gift Certificate
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ApiResponse getGiftById(Integer id) throws SQLException, ClassNotFoundException {
         String sql = "select * from gift_certificate where id=" + id;
         Connection connection = DbConfig.getConnection();
@@ -72,6 +86,13 @@ public class GiftCertificateService {
         return new ApiResponse("success", true, giftCertificate);
     }
 
+    /**
+     * Add Method (POST) for Gift Certificate
+     * @param giftCertificateDTO
+     * @return ApiResponse with Message and Success(boolean)
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ApiResponse addGiftCertificate(GiftCertificateDTO giftCertificateDTO) throws SQLException, ClassNotFoundException {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String create_date = timestamp.toString();
@@ -92,6 +113,13 @@ public class GiftCertificateService {
         return new ApiResponse("Gift certificate added successfully", true);
     }
 
+    /**
+     * Method for ADD Method (POST) of Gift Certificate Entity
+     * @param name
+     * @return Integer Id of Added Gift Certificate
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public Integer getAddedCertificateId(String name) throws SQLException, ClassNotFoundException {
         String sql = "select gift_certificate.id from gift_certificate where gift_certificate.name=" + "'" + name + "'";
         Connection connection = DbConfig.getConnection();
@@ -106,6 +134,14 @@ public class GiftCertificateService {
         return null;
     }
 
+    /**
+     * UPDATE (PUT) Method for Gift Certificate Entity
+     * @param id
+     * @param giftCertificateDTO
+     * @return ApiResponse with Message and success(boolean)
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ApiResponse updateGiftCertificate(Integer id,GiftCertificateDTO giftCertificateDTO) throws SQLException, ClassNotFoundException {
         String sql="select * from gift_certificate where id="+id;
         Statement statement = DbConfig.getConnection().createStatement();
@@ -127,6 +163,13 @@ public class GiftCertificateService {
         return new ApiResponse("Gift certificates Updated successfully",true);
     }
 
+    /**
+     * Delete Method of Gift Certificate Entity
+     * @param id
+     * @return ApiResponse with Message and Success(boolean)
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ApiResponse deleteGiftCertificate(Integer id) throws SQLException, ClassNotFoundException {
         String sql="select * from gift_certificate where gift_certificate.id="+id;
         Statement statement = DbConfig.getConnection().createStatement();
