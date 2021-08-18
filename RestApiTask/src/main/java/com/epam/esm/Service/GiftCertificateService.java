@@ -6,12 +6,9 @@ import com.epam.esm.Entity.Tag;
 import com.epam.esm.Payload.ApiResponse;
 import com.epam.esm.Payload.GiftCertificateDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -133,6 +130,7 @@ public class GiftCertificateService {
 
         return null;
     }
+
 
     /**
      * UPDATE (PUT) Method for Gift Certificate Entity
