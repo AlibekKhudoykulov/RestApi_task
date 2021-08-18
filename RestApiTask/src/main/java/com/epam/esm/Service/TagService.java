@@ -1,12 +1,9 @@
 package com.epam.esm.Service;
 
 import com.epam.esm.Configuration.DbConfig;
-import com.epam.esm.Entity.GiftCertificate;
 import com.epam.esm.Entity.Tag;
 import com.epam.esm.Payload.ApiResponse;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
