@@ -3,7 +3,7 @@ package com.epam.esm.service;
 
 import com.epam.esm.configuration.DbConfig;
 import com.epam.esm.model.Tag;
-import com.epam.esm.payload.response.ApiResponse;
+import com.epam.esm.payload.ApiResponse;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;

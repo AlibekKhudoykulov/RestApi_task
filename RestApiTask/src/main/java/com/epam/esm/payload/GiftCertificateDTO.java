@@ -15,4 +15,11 @@ public class  GiftCertificateDTO {
     private Double price;
     private Integer duration;
     private List<Integer> tags;
+
+    public GiftCertificateDTO(String name, String description, Double price, Integer duration) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.duration = duration;
+    }
 }

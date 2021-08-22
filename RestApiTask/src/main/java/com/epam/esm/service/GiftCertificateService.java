@@ -4,8 +4,8 @@ package com.epam.esm.service;
 import com.epam.esm.configuration.DbConfig;
 import com.epam.esm.model.GiftCertificate;
 import com.epam.esm.model.Tag;
+import com.epam.esm.payload.ApiResponse;
 import com.epam.esm.payload.GiftCertificateDTO;
-import com.epam.esm.payload.response.ApiResponse;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;

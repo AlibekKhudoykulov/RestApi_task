@@ -3,8 +3,8 @@ package com.epam.esm.controller;
 
 import com.epam.esm.exceptionHandling.exceptions.NoContentException;
 import com.epam.esm.exceptionHandling.exceptions.NotFoundException;
+import com.epam.esm.payload.ApiResponse;
 import com.epam.esm.payload.GiftCertificateDTO;
-import com.epam.esm.payload.response.ApiResponse;
 import com.epam.esm.service.GiftCertificateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
