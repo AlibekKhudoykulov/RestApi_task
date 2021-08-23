@@ -3,6 +3,7 @@ package com.epam.esm.controller;
 
 import com.epam.esm.exceptionHandling.exceptions.NoContentException;
 import com.epam.esm.exceptionHandling.exceptions.NotFoundException;
+import com.epam.esm.model.Tag;
 import com.epam.esm.payload.ApiResponse;
 import com.epam.esm.payload.GiftCertificateDTO;
 import com.epam.esm.service.GiftCertificateService;
@@ -34,6 +35,30 @@ public class GiftCertificateController {
         if (giftById.isSuccess()){
             return ResponseEntity.status(200).body(giftById);
         }else throw new NotFoundException(id);
+    }
+
+    @GetMapping("/byTagName")
+    public HttpEntity<?> getGiftByTagName(@RequestBody Tag tagName) throws SQLException, ClassNotFoundException {
+        ApiResponse giftById = giftCertificateService.getGiftsByTagName(tagName.getName());
+        if (giftById.isSuccess()){
+            return ResponseEntity.status(200).body(giftById);
+        }else throw new NotFoundException(tagName.getName());
+    }
+
+    @GetMapping("/byPartName")
+    public HttpEntity<?> getGiftsByPartOfName(@RequestParam String giftName) throws SQLException, ClassNotFoundException {
+        ApiResponse giftsByTagName = giftCertificateService.getGiftByPartOfName(giftName);
+        if (giftsByTagName.isSuccess()) {
+            return ResponseEntity.status(200).body(giftsByTagName);
+        } else throw new NotFoundException(giftName);
+    }
+
+    @GetMapping("/bySortedCreatedDate")
+    public HttpEntity<?> getSortedGiftsByAscending() throws SQLException, ClassNotFoundException {
+        ApiResponse sortedGiftsByCreatedDate = giftCertificateService.getSortedGiftsByCreatedDate();
+        if (sortedGiftsByCreatedDate.isSuccess())
+            return ResponseEntity.status(200).body(sortedGiftsByCreatedDate);
+        else throw new NoContentException();
     }
 
     @PostMapping

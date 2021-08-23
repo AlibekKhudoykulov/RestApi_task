@@ -9,5 +9,8 @@ public class NotFoundException extends RuntimeException{
     public NotFoundException(Integer id){
         super("Requested resource not found (id = "+ id+")");
     }
+    public NotFoundException(String name){
+        super("Requested resource not found (name = "+ name+")");
+    }
 
 }

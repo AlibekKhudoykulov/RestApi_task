@@ -2,6 +2,7 @@ package com.epam.esm.configuration;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DbConfig {
@@ -14,5 +15,9 @@ public class DbConfig {
         Class.forName("org.postgresql.Driver");
         Connection connection = DriverManager.getConnection(url, dbUser, dbPassword);
         return connection;
+    }
+
+    public static boolean isMyResultEmpty(ResultSet rs) throws SQLException {
+        return (!rs.isBeforeFirst() && rs.getRow() == 0);
     }
 }
